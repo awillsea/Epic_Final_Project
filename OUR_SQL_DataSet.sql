@@ -31,7 +31,7 @@ primary key(ingredient_id)
 
 create table cartItems(
 ci_id int not null auto_increment,
-potion_id json,  -- json holds an array of values
+potion_id varchar(100),  -- json holds an array of values
 primary Key(ci_id)
 -- come back maybe for Foreign Key
 );
@@ -59,3 +59,16 @@ insert into wizards  value ('9b528a63-0a01-4b91-992d-9afed9b841e7','Linfred','of
 insert into wizards  value ('1234','Mr.Cheese','of Narnia',null);
 
 
+select w.wizard_first_name, w.wizard_last_name,p.potion_name
+from potion p
+join  wizards w
+	on p.createdBy = w.wizard_id;
+    
+insert into cartItems (potion_id) value ("021b40b3-68ba-4fde-a595-dbb07500674d");
+insert into cartItems (potion_id) value ('0e7228e4-3050-411f-aaa7-6a175737e975');
+select * from cartItems;
+
+select p.potion_name
+from potion p
+join cartItems ci
+	on p.id = ci.potion_id;
